@@ -1,15 +1,15 @@
-name: FrontEnd
+name: BackEnd
 on: push
 env:
  PORT : 7000
- db : mongodb://localhost:2717/Auth
+ db : mongodb://localhost:27017/Auth
 jobs:
   build:
     environment: ecom  
     env:
       JWT_SECRET : ${{secrets.JWT_SECRET}}
       STRIPE_SECRET_KEY :  ${{secrets.STRIPE_SECRET_KEY}}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: action
         uses: actions/checkout@v3
