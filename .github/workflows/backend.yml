@@ -5,9 +5,10 @@ env:
  db : mongodb://localhost:2717/Auth
 jobs:
   build:
-    # environment: ecom  
-    # env:
-    #  NEXT_PUBLIC_STRIPE_KEY: ${{secrets.STRIPE_KEY}}
+    environment: ecom  
+    env:
+      JWT_SECRET : ${{secrets.JWT_SECRET}}
+      STRIPE_SECRET_KEY :  ${{secrets.STRIPE_SECRET_KEY}}
     runs-on: ubuntu-latest
     steps:
       - name: action
@@ -19,8 +20,8 @@ jobs:
           key: node-dep-${{ hashFiles('**/package-lock.json') }}
       - name: deploy
         run: |
-          echo "app name:${{env.NEXT_PUBLIC_APP_NAME}}"
-          echo "${{env.NEXT_PUBLIC_STRIPE_KEY}}"
+          echo "app name:${{env.JWT_SECRET}}"
+          echo "${{env.STRIPE_SECRET_KEY}}"
           export NODE_OPTIONS="--max_old_space_size=4096"
           echo "working"
           npm ci 
