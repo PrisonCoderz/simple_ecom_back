@@ -1,0 +1,26 @@
+name: FrontEnd
+on: push
+env:
+ PORT : 7000
+ db : mongodb://localhost:2717/Auth
+jobs:
+  build:
+    # environment: ecom  
+    # env:
+    #  NEXT_PUBLIC_STRIPE_KEY: ${{secrets.STRIPE_KEY}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: action
+        uses: actions/checkout@v3
+      - name: cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-dep-${{ hashFiles('**/package-lock.json') }}
+      - name: deploy
+        run: |
+          echo "app name:${{env.NEXT_PUBLIC_APP_NAME}}"
+          echo "${{env.NEXT_PUBLIC_STRIPE_KEY}}"
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          echo "working"
+          npm ci 
