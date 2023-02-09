@@ -23,5 +23,5 @@ jobs:
           echo "app name:${{env.JWT_SECRET}}"
           echo "${{env.STRIPE_SECRET_KEY}}"
           export NODE_OPTIONS="--max_old_space_size=4096"
-          echo "working"
-          npm ci 
+          echo "working "
+          npm ci   
